@@ -3,10 +3,12 @@ import { useState } from "react";
 const currencies = ["USD", "EUR", "ARS"];
 
 const ConversionMenu = () => {
-  const [inputContent, setInputContent] = useState(0);
-  const [outputContent, setOutputContent] = useState("");
-  const [actualCurrencyInput, setActualCurrencyInput] = useState("USD");
-  const [actualCurrencyOutput, setActualCurrencyOutput] = useState("EUR");
+
+  //Estados utilizados para manejar la aplicación
+  const [inputContent, setInputContent] = useState(0); //manejará la entrada
+  const [outputContent, setOutputContent] = useState("");//manejará la salida
+  const [actualCurrencyInput, setActualCurrencyInput] = useState("USD");// manejará la moneda ingresada
+  const [actualCurrencyOutput, setActualCurrencyOutput] = useState("EUR");//manejará la moneda resultante
 
   //Función que se encarga de obtener los datos...
   const fecthConversion = async (currency: string) => {
