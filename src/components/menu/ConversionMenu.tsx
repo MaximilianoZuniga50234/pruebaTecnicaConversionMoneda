@@ -3,12 +3,11 @@ import { useState } from "react";
 const currencies = ["USD", "EUR", "ARS"];
 
 const ConversionMenu = () => {
-
   //Estados utilizados para manejar la aplicación
   const [inputContent, setInputContent] = useState(0); //manejará la entrada
-  const [outputContent, setOutputContent] = useState("");//manejará la salida
-  const [actualCurrencyInput, setActualCurrencyInput] = useState("USD");// manejará la moneda ingresada
-  const [actualCurrencyOutput, setActualCurrencyOutput] = useState("EUR");//manejará la moneda resultante
+  const [outputContent, setOutputContent] = useState(""); //manejará la salida
+  const [actualCurrencyInput, setActualCurrencyInput] = useState("USD"); // manejará la moneda ingresada
+  const [actualCurrencyOutput, setActualCurrencyOutput] = useState("EUR"); //manejará la moneda resultante
 
   //Función que se encarga de obtener los datos...
   const fecthConversion = async (currency: string) => {
@@ -51,40 +50,46 @@ const ConversionMenu = () => {
 
   return (
     <div className="flex flex-col gap-4 rounded-xl bg-slate-800 p-10">
-      <div className="flex flex-row gap-3">
-        <input
-          value={inputContent}
-          type="number"
-          onChange={handleChangeInput}
-          placeholder="Ingrese la cantidad"
-          className="px-2 py-1 rounded-lg"
-        />
-        <select value={actualCurrencyInput} onChange={handleChangeDropI}>
-          {currencies.map((currency) => (
-            <option key={currencies.indexOf(currency)} value={currency}>
-              {currency}
-            </option>
-          ))}
-        </select>
+      <div className="flex flex-col gap-2">
+        <label className="text-white font-bold">Ingrese un valor</label>
+        <div className="flex flex-row gap-3">
+          <input
+            value={inputContent}
+            type="number"
+            onChange={handleChangeInput}
+            placeholder="Ingrese la cantidad"
+            className="px-2 py-1 rounded-lg"
+          />
+          <select value={actualCurrencyInput} onChange={handleChangeDropI}>
+            {currencies.map((currency) => (
+              <option key={currencies.indexOf(currency)} value={currency}>
+                {currency}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="flex flex-row gap-3">
-        <input
-          value={outputContent}
-          type="text"
-          readOnly
-          placeholder="Resultado"
-          className="px-2 py-1 rounded-lg"
-        />
-        <select value={actualCurrencyOutput} onChange={handleChangeDropO}>
-          {currencies.map((currency) => {
-            if (currency !== actualCurrencyInput)
-              return (
-                <option key={currencies.indexOf(currency)} value={currency}>
-                  {currency}
-                </option>
-              );
-          })}
-        </select>
+      <div className="flex flex-col gap-2">
+        <label className="text-white font-bold">Resultado</label>
+        <div className="flex flex-row gap-3">
+          <input
+            value={outputContent}
+            type="text"
+            readOnly
+            placeholder="Resultado"
+            className="px-2 py-1 rounded-lg"
+          />
+          <select value={actualCurrencyOutput} onChange={handleChangeDropO}>
+            {currencies.map((currency) => {
+              if (currency !== actualCurrencyInput)
+                return (
+                  <option key={currencies.indexOf(currency)} value={currency}>
+                    {currency}
+                  </option>
+                );
+            })}
+          </select>
+        </div>
       </div>
       <button
         className="self-center text-white px-2 py-1 font-bold rounded-lg bg-red-500 hover:bg-red-400"
